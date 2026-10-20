@@ -1,0 +1,112 @@
+{
+  "status": "completed",
+  "selected": "H0",
+  "search": {
+    "H0": {
+      "n": 64,
+      "passed": 25,
+      "tokens": 20401
+    },
+    "prompt_candidate": {
+      "n": 64,
+      "passed": 25,
+      "tokens": 20423
+    },
+    "feedback_candidate": {
+      "n": 64,
+      "passed": 25,
+      "tokens": 20591
+    },
+    "history_candidate": {
+      "n": 64,
+      "passed": 26,
+      "tokens": 20549
+    },
+    "adaptive4": {
+      "n": 64,
+      "passed": 24,
+      "tokens": 18882
+    },
+    "adaptive5": {
+      "n": 64,
+      "passed": 25,
+      "tokens": 20485
+    },
+    "adaptive6": {
+      "n": 64,
+      "passed": 27,
+      "tokens": 20618
+    },
+    "adaptive7": {
+      "n": 64,
+      "passed": 28,
+      "tokens": 19769
+    }
+  },
+  "selection": {
+    "selected": "H0",
+    "eligible": [],
+    "rule": "mean success improves; neither seed below H0; tie by generated tokens then name",
+    "scores": {
+      "H0": {
+        "42": {
+          "n": 64,
+          "passed": 21,
+          "tokens": 19745
+        },
+        "43": {
+          "n": 64,
+          "passed": 19,
+          "tokens": 19509
+        }
+      },
+      "adaptive7": {
+        "42": {
+          "n": 64,
+          "passed": 18,
+          "tokens": 19299
+        },
+        "43": {
+          "n": 64,
+          "passed": 17,
+          "tokens": 19538
+        }
+      },
+      "adaptive6": {
+        "42": {
+          "n": 64,
+          "passed": 19,
+          "tokens": 19519
+        },
+        "43": {
+          "n": 64,
+          "passed": 16,
+          "tokens": 19841
+        }
+      }
+    },
+    "selection_read_once": true,
+    "no_further_mutations": true
+  },
+  "raw_transfer": {
+    "('H0', 42)": {
+      "n": 64,
+      "passed": 17,
+      "tokens": 20095
+    },
+    "('H0', 43)": {
+      "n": 64,
+      "passed": 18,
+      "tokens": 19937
+    }
+  },
+  "new_dev_trajectories": 1024,
+  "new_test_generations": 0,
+  "limitations": [
+    "One RL training seed and two dev sampling seeds; final test one seed.",
+    "Existing dev/test were previously used; not a pristine validation/holdout estimate.",
+    "Common harness optimized around GRPO; other models measure transfer, not their individual optimal harness.",
+    "All test arms share the disclosed single-task indexed scoring-copy amendment.",
+    "Search and deployment costs reported separately; no claim of model-weight improvement."
+  ]
+}

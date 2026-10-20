@@ -1,0 +1,98 @@
+{
+  "framework": {
+    "name": "verl",
+    "tag": "v0.6.1",
+    "revision": "d62da4950573d7a4b7ef2362337952e7ab59e78d"
+  },
+  "base_model": "Qwen3-4B-Instruct-2507",
+  "sft_warm_start": false,
+  "precision": "BF16 LoRA; no quantization",
+  "harness": "H0 one_action_v2",
+  "lora": {
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0,
+    "targets": "all-linear",
+    "init_seed": 42,
+    "same_zero_output_initial_adapter": true
+  },
+  "train": {
+    "tasks_per_method": 256,
+    "sibling_rollouts_per_task": 4,
+    "max_actions": 4,
+    "action_max_tokens": 512,
+    "observation_max_tokens": 384,
+    "context_max_tokens": 8192,
+    "temperature": 1,
+    "top_p": 1,
+    "top_k": -1,
+    "tasks_per_batch": 4,
+    "microbatch_trajectories": 1,
+    "train_iterations": 64,
+    "learning_rate": 1e-05,
+    "kl_beta": 0.02
+  },
+  "methods": {
+    "grpo": {
+      "advantage": "native grpo, group std normalized",
+      "objective": "native vanilla clipped token-ratio",
+      "epochs_per_batch": 2,
+      "loss_aggregation": "seq-mean-token-mean",
+      "kl": "differentiable k3"
+    },
+    "gspo": {
+      "advantage": "native grpo, group std normalized",
+      "objective": "native gspo length-normalized sequence ratio",
+      "clip_low": 0.0003,
+      "clip_high": 0.0004,
+      "epochs_per_batch": 2,
+      "kl": "differentiable k3"
+    },
+    "rloo": {
+      "advantage": "native rloo leave-one-out",
+      "objective": "native gpg unclipped REINFORCE",
+      "epochs_per_batch": 1,
+      "loss_aggregation": "seq-mean-token-sum",
+      "kl": "sampled sequence k1 reward penalty"
+    }
+  },
+  "credit": "Binary terminal test success, episode advantage shared across generated action tokens; tool context masked; no step judge/shaping.",
+  "evaluation": {
+    "temperature": 0.7,
+    "greedy": false,
+    "dev_curve": {
+      "tasks": 32,
+      "every_train_tasks": 64,
+      "selection": false
+    },
+    "final_dev": 128,
+    "final_test": 128,
+    "raw_modes": [
+      "single",
+      "independent4-public-selector",
+      "feedback"
+    ],
+    "rl_modes": [
+      "feedback"
+    ],
+    "checkpoint_rule": "final256-no-test-selection",
+    "test_gate": "All three final adapter hashes frozen before any test model evaluation"
+  },
+  "queue": "prepare -> numerical objective/mask checks -> three GPU smokes -> GRPO256 -> GSPO256 -> RLOO256 -> lock -> final dev -> test audit -> final test -> report",
+  "checkpoint_storage": "Keep one resumable active checkpoint. Export final adapters and optimizer/RNG state; delete newly generated redundant frozen-base shards only after verified adapter copy.",
+  "limitations": [
+    "One training seed",
+    "Matched rollout budget, differing optimization epochs",
+    "Passing pinned BIRD tests is not independent semantic correctness certification",
+    "Previously observed identical question text across train/dev databases requires sensitivity reporting"
+  ],
+  "task_selection": "Seed42 order from pre-audited train pool; revalidate with current judge and unchanged 3-second SQL budget; retry failures alone; fill to 256 valid tasks before freezing; preserve exclusion evidence.",
+  "padding_optimization": {
+    "mechanism": "external_lib wrapper trims attention_mask=0 edges for microbatch1 and delegates to native actor forward; restores full response output shape",
+    "cpu_fp32_relative_gradient_error": 2.548350153119827e-07,
+    "cuda_bf16_relative_gradient_error": 0.004267027601599693,
+    "cuda_bf16_gradient_cosine_similarity": 0.9999909400939941,
+    "active_logprob_difference_in_check": 0.0,
+    "interpretation": "Mathematically equivalent padding removal; BF16 kernel roundoff is not bitwise equality."
+  }
+}

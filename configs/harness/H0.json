@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "name": "H0",
+  "prompt": {"additional_instruction": ""},
+  "feedback": {"style": "raw", "row_preview": 5},
+  "history": {"mode": "full", "keep_recent_observations": 1, "include_state": false}
+}

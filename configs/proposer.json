@@ -1,0 +1,13 @@
+{
+  "base_url": "https://api.deepseek.com",
+  "model": "deepseek-flash",
+  "thinking": {
+    "type": "enabled"
+  },
+  "reasoning_effort": "low",
+  "max_tokens": 4096,
+  "response_format": {
+    "type": "json_object"
+  },
+  "max_calls": 4
+}

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sqlforge"
+version = "0.2.0"
+description = "Feedback-driven SQL repair agents with verl, LoRA and bounded harness search"
+requires-python = ">=3.11,<3.14"
+dependencies = []
+license = "MIT"
+authors = [{name = "Chengrui Han"}]
+
+[project.optional-dependencies]
+dev = ["ruff>=0.9,<1"]
+
+[project.scripts]
+sqlforge = "sqlforge.cli:main"
+sqlforge-evaluate = "sqlforge.eval_cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

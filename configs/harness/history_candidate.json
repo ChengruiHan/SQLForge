@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "name": "history_candidate",
+  "history": {"mode": "compact_observations", "keep_recent_observations": 1, "include_state": true}
+}

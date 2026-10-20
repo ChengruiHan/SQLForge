@@ -1,0 +1,22 @@
+{
+  "export": "Aggregate scores and per-task outcomes only; no prompts, reference SQL, hidden test code or training demonstrations.",
+  "original_report_sha256": {
+    "reports/verl-h0-20261020-recovery/FINAL_REPORT.json": "d461400afa99d340dde363e333ee7792e8d0fa9c4dca4ffbe0065db85eaef5cf",
+    "reports/harness-search-20261020/FINAL_REPORT.json": "e9ba0ca30b46defce6c6ec4b0809f016cd2460ad4a02175af0384954407dae53"
+  },
+  "harness_archive_sha256": "a6203dbd58dcdec33ae9715b5fd6a4d66791c256edd5c58947289d022a48e74e",
+  "evaluator": {
+    "repository": "https://github.com/bird-bench/BIRD-RL",
+    "revision": "b26c4285ef69dfb6c096b076a7499018c6b370ca",
+    "files_sha256": {
+      "LICENSE": "f0b48b24dbfd2f59c99dfd5a1ecbe211d99dfa04e51a60a316ba4f0aea56cdfb",
+      "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "single_instance_eval.py": "8303b87e009a34d316dd14c8950f5814d7554c6f03409c18628e261999616fe7",
+      "db_utils.py": "9a9356e38ac2942167f8efa2f43e869d577321202da2ef1cf2b5e7579e22b83b",
+      "test_utils.py": "b8e4cf734f62d4c4b43a8c330f0842c17fb921984a7ed2d2cb1e114a8ef31aa2",
+      "logger.py": "a81c3d00fb8bde0eb3ea3a9a28c46ec9ef00c2279352c5e8414780bcd3f65044",
+      "utils.py": "ea7cfe37592ec6b36b3f12566337e2e2af23af4fde411fa987ba2e9615eb149c"
+    }
+  },
+  "public_code_note": "Core runtime preserved; entry points refactored to remove historical run folders and SFT-release prerequisites. Public wrappers verified on CPU; no new GPU training performed for this release."
+}

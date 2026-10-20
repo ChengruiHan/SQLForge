@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "name": "feedback_candidate",
+  "feedback": {"style": "status_first", "row_preview": 5}
+}

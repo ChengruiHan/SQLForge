@@ -1,0 +1,8 @@
+# Recorded Linux/Python3.12/CUDA12.8 stack. Install torch from the CUDA index first.
+torch==2.8.0
+vllm==0.11.0
+transformers==4.57.1
+peft==0.18.1
+numpy==2.2.6
+pandas
+pyarrow

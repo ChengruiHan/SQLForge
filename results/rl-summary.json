@@ -1,0 +1,79 @@
+{
+  "base_model": "Qwen3-4B-Instruct-2507",
+  "framework": "verl v0.6.1",
+  "precision": "BF16 LoRA",
+  "training_seeds": [
+    42
+  ],
+  "sampling_temperature": 0.7,
+  "training": {
+    "grpo": {
+      "committed_trajectories": 1024,
+      "independent_tasks": 256,
+      "successful_trajectories": 334.0,
+      "mixed_reward_groups": 34,
+      "generated_action_tokens": 311349
+    },
+    "gspo": {
+      "committed_trajectories": 1024,
+      "independent_tasks": 256,
+      "successful_trajectories": 348.0,
+      "mixed_reward_groups": 40,
+      "generated_action_tokens": 295239
+    },
+    "rloo": {
+      "committed_trajectories": 1024,
+      "independent_tasks": 256,
+      "successful_trajectories": 346.0,
+      "mixed_reward_groups": 38,
+      "generated_action_tokens": 313129
+    }
+  },
+  "results": {
+    "dev": {
+      "raw": {
+        "n": 128,
+        "passed": 41,
+        "accuracy": 0.3203125
+      },
+      "grpo": {
+        "n": 128,
+        "passed": 46,
+        "accuracy": 0.359375
+      },
+      "gspo": {
+        "n": 128,
+        "passed": 45,
+        "accuracy": 0.3515625
+      },
+      "rloo": {
+        "n": 128,
+        "passed": 42,
+        "accuracy": 0.328125
+      }
+    },
+    "test": {
+      "raw": {
+        "n": 128,
+        "passed": 39,
+        "accuracy": 0.3046875
+      },
+      "grpo": {
+        "n": 128,
+        "passed": 39,
+        "accuracy": 0.3046875
+      },
+      "gspo": {
+        "n": 128,
+        "passed": 38,
+        "accuracy": 0.296875
+      },
+      "rloo": {
+        "n": 128,
+        "passed": 42,
+        "accuracy": 0.328125
+      }
+    }
+  },
+  "scoring_amendment": "TRAIN_4648: an index on games_competitor(person_id) in an isolated scoring copy; all four test arms uniformly rescored. See docs/results.md."
+}

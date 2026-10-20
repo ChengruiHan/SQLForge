@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "name": "prompt_candidate",
+  "prompt": {
+    "additional_instruction": "Use an execution result to resolve a specific uncertainty. Execution success does not establish semantic correctness. Do not repeat a query that has already produced an execution error unchanged. Preserve a candidate when the available evidence supports it; turns remaining alone are not a reason to change it."
+  }
+}
